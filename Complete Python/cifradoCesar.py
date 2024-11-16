@@ -38,3 +38,4 @@ def encriptar():
     imprimirTextoEncriptado()
 
 encriptar()
+desencriptar()
