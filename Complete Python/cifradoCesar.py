@@ -16,33 +16,31 @@ def desplazar(numeroDesplazamiento):
         abcdrioDesplazado.append(abcdrioNormal[nuevoIndice])
 
 def obtenerPosicionesAEcriptar(textoAEncriptar):
-     for i in range(len(textoAEncriptar)):
-        for z in range(len(abcdrioNormal)):
-            if textoAEncriptar[i] == abcdrioNormal[z]:
-                posicionesAEncriptar.append(z)
+     for char in textoAEncriptar:
+          if char in abcdrioNormal:
+                posicionesAEncriptar.append(abcdrioNormal.index(char))
 
 def obtenerPosicionesADesencriptar(textoADesencriptar):
-     for i in range(len(textoADesencriptar)):
-        for z in range(len(abcdrioDesplazado)):
-            if textoADesencriptar[i] == abcdrioDesplazado[z]:
-                posicionesADesencriptar.append(z)
+     for char in textoADesencriptar:
+          if char in abcdrioDesplazado:
+                posicionesADesencriptar.append(abcdrioDesplazado.index(char))
 
 def hacerEncriptado(posicionesAEncriptar):
-    for i in range(len(posicionesAEncriptar)):
-            textoEncriptado.append(abcdrioDesplazado[posicionesAEncriptar[i]])
+    for i in posicionesAEncriptar:
+            textoEncriptado.append(abcdrioDesplazado[i])
 
 def hacerDesencriptado(posicionesADesencriptar):
-    for i in range(len(posicionesADesencriptar)):
-            textoDesencriptado.append(abcdrioNormal[posicionesADesencriptar[i]])
+    for i in posicionesADesencriptar:
+            textoDesencriptado.append(abcdrioNormal[i])
 
 def imprimirTextoEncriptado():
-    for i in range(len(textoEncriptado)):
-        print(textoEncriptado[i], end="")
+    for i in textoEncriptado:
+        print(i, end="")
     print("")
 
 def imprimirTextoDesencriptado():
-    for i in range(len(textoDesencriptado)):
-        print(textoDesencriptado[i], end="")
+    for i in textoDesencriptado:
+        print(i, end="")
     print("")
 
 def encriptar():
