@@ -51,6 +51,9 @@ def calcular():
             return calcular()
         if respuesta.lower() == 'x':
             break
+        if respuesta.lower() not in ['y', 'n', 'x']:
+            print("Opción no válida. Saliendo del programa...")
+            break
 
 calcular()
 
