@@ -9,10 +9,10 @@ def mostrar_intro():
     print("""
      
 .------.           _     _            _    _            _    
-|A_  _ |.         | |   | |          | |  (_)          | |   
+|A_  _ |.         | |   | |          | |  (♣️)          | |   
 |( \/ ).-----.    | |__ | | __ _  ___| | ___  __ _  ___| | __
 | \  /|K /\  |    | '_ \| |/ _' |/ __| |/ / |/ _' |/ __| |/ /
-|  \/ | /  \ |    | |_) | | (_| | (__|   <| | (_| | (__|   < 
+|  \/ | /  \ |    | |♠️) | | (♠️| | (♠️_| ♠️ <| | (♠️| | (♠️_| ♠️ < 
 '-----| \  / |    |_.__/|_|\__,_|\___|_|\_\ |\__,_|\___|_|\_\\
       |  \/ K|                           _/ |                
       '------'                         |____/
@@ -53,28 +53,30 @@ def nuevaCartaJugador (jugador,cantidad):
 
 def determinarGanador(pc, jugador):
     if pc == "Blackjack":
-        return "¡Blackjack! Ganó la computadora."
+        return "¡Blackjack!😱 Ganó la computadora."
     
     if jugador == "Blackjack":
-        return "¡Blackjack! Ganó el jugador."
+        return "¡Blackjack! Ganó el jugador.😱"
     
     if pc > 21 and jugador > 21:
         return "Ambos se pasaron de 21. Nadie gana."
     if pc > 21:
-        return "¡Ganó el jugador! La computadora se pasó de 21."
+        return "¡Ganó el jugador! 😁 La computadora se pasó de 21."
     
     if jugador > 21:
-        return "¡Ganó la computadora! El jugador se pasó de 21."
+        return "¡Ganó la computadora! 😁 El jugador se pasó de 21."
 
     if pc > jugador:
-        return "¡Ganó la computadora!"
+        return "¡Ganó la computadora! 😤"
     if jugador > pc:
-        return "¡Ganó el jugador!"
-    
+        return "¡Ganó el jugador! 😁"
     
     return "¡Es un empate!"
 
-
+def mostrarResultados(cartasPC,misCartas,totalPC,totalJugador):
+    print("La última mano de la computadora 🤡:",cartasPC,"puntos:", suma(cartasPC))
+    print("Tu mano final 😻:",misCartas,"puntos:", suma(misCartas))
+    print(determinarGanador(pc=totalPC,jugador=totalJugador))
 
 respuesta = ''
 while respuesta !='N':
@@ -95,44 +97,35 @@ while respuesta !='N':
         break
     continuar = ''
 
-    total = suma(misCartas)
+    totalJugador = suma(misCartas)
     totalPC = suma(cartasPC)
 
-    if total ==  "Blackjack" or totalPC ==  "Blackjack":
-        print("La última mano de la computadora:",cartasPC)
-        print("Tu mano final:",misCartas)
-        print(determinarGanador(pc=totalPC,jugador=total))
+    if totalJugador ==  "Blackjack" or totalPC ==  "Blackjack":
+        mostrarResultados(cartasPC,misCartas,totalPC,totalJugador)
         
     else:
-        while continuar !='N' and total<22:
+        while continuar !='N' and totalJugador<22:
             continuar = input("Teclea 'Y' para recibir otra carta, o 'n' para finalizar:").upper()
         
             if continuar == 'Y':
                 print("Tus cartas actuales",nuevaCartaJugador('persona',1), "suma actual",suma(misCartas))
                 print("Primera carta de la PC:",cartasPC[0])
-                total= suma(misCartas)
+                totalJugador= suma(misCartas)
 
-                if total > 21:
+                if totalJugador > 21:
                     
-                    print(determinarGanador(pc=totalPC,jugador=total))
+                    mostrarResultados(cartasPC,misCartas,totalPC,totalJugador)
                     
             if continuar =='N':
 
                 totalPC= suma(cartasPC)
-                if totalPC <= 16:
-                    while True:
-                        nuevaCartaJugador('pc',1)
+                while totalPC <= 16:
+                    nuevaCartaJugador('pc',1)
                         
-                        totalPC = suma(cartasPC) 
-
-                        if totalPC >=17 and totalPC <=21:
-                            break
-                        elif totalPC >21:
-                            break
+                    totalPC = suma(cartasPC)
+                    
                 
-                print("La última mano de la computadora:",cartasPC, "puntos:",suma(cartasPC))
-                print("Tu mano final:",misCartas, "puntos:",suma(misCartas))
-                print(determinarGanador(pc=totalPC,jugador=total))
+                mostrarResultados(cartasPC,misCartas,totalPC,totalJugador)
         
         
 
