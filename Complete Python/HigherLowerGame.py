@@ -66,7 +66,6 @@ while jugando:
     print("Comparar A:",personaConMasSeguidores["nombre"],personaConMasSeguidores["descripcion"],"de",personaConMasSeguidores["pais"])
 
     print(diccionarioArte[1]["vs"])
-
     diccionarioDePersonasDisponibles = excluirPersonaConMasSeguidores(personasFamosas, personaConMasSeguidores)
     personaNueva=random.choices(diccionarioDePersonasDisponibles , k=1)      
 
