@@ -25,7 +25,7 @@ def actualizarPersonaConMasSeguidores(persona):
     personaConMasSeguidores["descripcion"] = persona["descripcion"]
     personaConMasSeguidores["pais"] = persona["pais"]
 
-def excluirPersinaConMasSeguidores(personas, persona):
+def excluirPersonaConMasSeguidores(personas, persona):
     personasDisponibles = []
 
     print("Se esta exlutendo a:", persona["nombre"],"de la lista de personas disponibles")
@@ -66,8 +66,7 @@ while jugando:
     print("Comparar A:",personaConMasSeguidores["nombre"],personaConMasSeguidores["descripcion"],"de",personaConMasSeguidores["pais"])
 
     print(diccionarioArte[1]["vs"])
-
-    diccionarioDePersonasDisponibles = excluirPersinaConMasSeguidores(personasFamosas, personaConMasSeguidores)
+    diccionarioDePersonasDisponibles = excluirPersonaConMasSeguidores(personasFamosas, personaConMasSeguidores)
     personaNueva=random.choices(diccionarioDePersonasDisponibles , k=1)      
 
     print("Contra B:",personaNueva[0]["nombre"],personaNueva[0]["descripcion"],"de",personaNueva[0]["pais"]) 
