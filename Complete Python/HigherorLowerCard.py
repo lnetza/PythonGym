@@ -1,5 +1,17 @@
 
 import random
+print("""
+  ______    ______   _______   ________  ______    ______  
+ /      \  /      \ /       \ /        |/      \  /      \ 
+/$$$$$$  |/$$$$$$  |$$$$$$$  |$$$$$$$$//$$$$$$  |/$$$$$$  |
+$$ |  $$/ $$ |__$$ |$$ |__$$ |   $$ |  $$ |__$$ |$$ \__$$/ 
+$$ |      $$    $$ |$$    $$<    $$ |  $$    $$ |$$      \ 
+$$ |   __ $$$$$$$$ |$$$$$$$  |   $$ |  $$$$$$$$ | $$$$$$  |
+$$ \__/  |$$ |  $$ |$$ |  $$ |   $$ |  $$ |  $$ |/  \__$$ |
+$$    $$/ $$ |  $$ |$$ |  $$ |   $$ |  $$ |  $$ |$$    $$/ 
+ $$$$$$/  $$/   $$/ $$/   $$/    $$/   $$/   $$/  $$$$$$/  
+                                                           
+""")
 PALOS_TUPLA = ("Diamantes ♦", "Corazones ♥", "Tréboles ♣", "Picas ♠")
 RANGO_TUPLA = ("As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K")
 
@@ -36,17 +48,68 @@ for palo in PALOS_TUPLA:
         listaDeCartas.append(carta)
 
 score = 50
+cartasIniciales = 8
 
 while True:
     cartasBarajadas = barajarCartas(listaDeCartas)
     cartaActual = tomarCarta(cartasBarajadas)
-    print(f"\nLa carta actual es: {cartaActual['nombreCarta']} de {cartaActual['palo']}")
-    break
+    
+    nombreCartaActual = cartaActual['nombreCarta']
+    paloCartaActual = cartaActual['palo']
+    valorCartaActual = cartaActual['valorCarta']
+    
+    print(f"\nCarta actual: {nombreCartaActual} de {paloCartaActual}")
+    
 
+    for intentos in range(0, cartasIniciales):
+        respuesta = input(f"¿La siguiente carta será más alta que: {nombreCartaActual} de {paloCartaActual}? teclea A para Carta ALTA, B para carta Baja:").casefold()
 
+        siguienteCarta = tomarCarta(cartasBarajadas)
+        siguienteCartaNombre = siguienteCarta['nombreCarta']
+        siguienteCartaPalo = siguienteCarta['palo']
+        siguienteCartaValor = siguienteCarta['valorCarta']
+        
+        print(f"La carta es: {siguienteCartaNombre} de {siguienteCartaPalo}")
+        if respuesta == "a":
+            if siguienteCartaValor > valorCartaActual:
+                print("¡Correcto! La carta es más alta.")
+                score += 20
+            else:
+                print("Incorrecto. La carta es más baja.")
+                score -= 15
+        
+        
+        elif respuesta == "b":
+            if siguienteCartaValor < valorCartaActual:
+                print("¡Correcto! La carta es más baja.")
+                score += 20
+            else:
+                print("Incorrecto. La carta es más alta.")
+                score -=15
+        
 
+        nombreCartaActual = siguienteCartaNombre
+        paloCartaActual = siguienteCartaPalo 
+        valorCartaActual = siguienteCartaValor
 
+        print(f"Tu puntaje actual es: {score}")
+        print("""                   
+            ______  ______  ______  ______ 
+            /      |/      |/      |/      |
+            $$$$$$/ $$$$$$/ $$$$$$/ $$$$$$/                             
 
+            """)
+        if score <= 0:
+            print("¡Has perdido! Tu puntaje es 0.")
+            score = 50
+            break
+
+    jugarOtraVez = input("¿Quieres jugar otra vez? (S/N): ").casefold()
+    if jugarOtraVez == "s":
+        print("¡Genial! Comenzamos de nuevo.")
+    if jugarOtraVez == "n":
+        print("Gracias por jugar. ¡Hasta luego!")
+        break
 
 
 
