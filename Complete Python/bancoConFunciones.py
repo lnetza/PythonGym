@@ -1,3 +1,22 @@
+"""
+En esta versión, se ha creado una función para cada una de las operaciones identificadas para una cuenta bancaria 
+(Crear nueva cuenta, Ver información de la cuenta,Consultar saldo,Retirar dinero,Depositar dinero")y reorganizar el 
+código para que el código principal contenga llamadas a las diferentes funciones.
+
+Por ejemplo, si el usuario indica que desean hacer un depósito, el código ahora llama a una función llamada depositarDinero(), 
+pasando el monto que se depositará y la contraseña de la cuenta.
+
+Sin embargo, se observa la definición de alguna de estas funciones, por ejemplo, la función retirarDinero(), en el código se
+usa las declaraciones globales para acceder (obtener o establecer) las variables que representan la cuenta. En Python, 
+solo se requiere una declaración global si desea cambiar el valor de una variable global en una función. Sin embargo, se estan
+usando aquí para dejar en claro que estas funciones se refieren a variables globales, incluso si solo están obteniendo un valor.
+
+Como un principio de programación general, las funciones nunca deben modificar las variables globales. Una función solo debe 
+usar datos que se transmitan, hacer cálculos basados en esos datos y potencialmente devolver un resultado o resultados. 
+La función retirarDinero() en este programa funciona, pero viola esta regla modificando el valor de la variable global de 
+consultarSaldo (además de acceder al valor de contraseña de la cuenta).
+"""
+
 
 titularCuenta =''
 saldoCuenta = 0.0
@@ -47,7 +66,7 @@ def retirarDinero(cantidad, password):
         print("Contraseña incorrecta.")
         assci()
 
-def despositarDinero(cantidad):
+def depositarDinero(cantidad):
     global saldoCuenta
     if cantidad < 0:
         print("No se puede depositar una cantidad negativa.")
@@ -56,7 +75,6 @@ def despositarDinero(cantidad):
         saldoCuenta += cantidad
         print("Depósito exitoso. Nuevo saldo:", saldoCuenta)
         assci()
-
 
 while True:
     print("Bienvenido al sistema bancario")
@@ -89,7 +107,7 @@ while True:
     
     elif opcion.upper() == 'E':
         cantidad = int(input("Cantidad a depositar: "))
-        despositarDinero(cantidad)
+        depositarDinero(cantidad)
 
     elif opcion.upper() == 'Q':
         print("Saliendo del programa...")
