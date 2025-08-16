@@ -34,7 +34,7 @@ class Cuenta():
             return
         print(f"Saldo actual: {self.saldo}")
 
-
+"""
 cuenta1 = Cuenta("Jorge", 10000, "98987")
 cuenta2 = Cuenta("Ana", 5000, "12345")
 cuenta3 = Cuenta("Alejandra", 2000, "54321")
@@ -63,4 +63,4 @@ cuenta4.depositar(1500, "67890")
 cuenta4.consultarSaldo("67890")
 cuenta4.retirar(3500, "67890")
 cuenta4.consultarSaldo("67890")
-
+"""
